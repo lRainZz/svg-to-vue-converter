@@ -2,12 +2,12 @@
 
 ## About
 Small CLI tool to convert SVG files to Vue components for easier use in
-VueJs applications. Replaces values of of stroke/fill that are not 'none'
-with 'currentColor' (inside style and standalone properties), 
+VueJs applications. Replaces values of stroke/fill properties that are not 'none'
+with 'currentColor' (inside style and standalone), 
 so the icons can be used with the 'color' CSS property.
   
 Uses [prettier](https://www.npmjs.com/package/prettier) to auto format the components.
-Currently uses to 4 spaces identation.
+Currently uses 4 spaces identation.
 
 ## Installation
 This package is intended to be used on the cli, to use it without any project, run  
@@ -26,9 +26,9 @@ SYNOPSIS
 
 DESCRIPTION:
     Converts SVGs' to vue components and replaces 'fill' and 'stroke' porperties
-    with 'currentColor' for an easier use in vue projects. Does not work well with
+    with 'currentColor' for easier use in Vue projects. Does not work well with
     multicolor SVGs'! By Default it takes the SVGs' in the current folder and replaces
-    them with its' generated Vue counterparts -> SVGs' will be backed up.
+    them with generated Vue component counterparts -> SVGs' will be backed up.
 
     -h, --help
         display this help
