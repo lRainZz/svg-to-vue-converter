@@ -2,6 +2,7 @@
     "name": "svg-to-vue-converter",
     "version": "1.0.0",
     "description": "Converts simple svg files to vue components with 'currentColor' for applicable fills'n'strokes",
+    "repository": "https://github.com/lRainZz/svg-to-vue-converter.git",
     "type": "module",
     "main": "index.js",
     "scripts": {

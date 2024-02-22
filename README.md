@@ -9,6 +9,12 @@ so the icons can be used with the 'color' CSS property.
 Uses [prettier](https://www.npmjs.com/package/prettier) to auto format the components.
 Currently uses to 4 spaces identation.
 
+## Installation
+This package is intended to be used on the cli, to use it without any project, run  
+`npm i -g svg-to-vue-converter`  
+  
+For usage see `svg-to-vue-converter -h` or help text below
+
 ## man
 
 ```
