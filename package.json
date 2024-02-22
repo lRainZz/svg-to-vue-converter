@@ -1,0 +1,22 @@
+{
+    "name": "svg-to-vue-converter",
+    "version": "1.0.0",
+    "description": "Converts simple svg files to vue components with 'currentColor' for applicable fills'n'strokes",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "dev": "node index.js"
+    },
+    "bin": "./index.js",
+    "keywords": [
+        "tool",
+        "converter",
+        "svg",
+        "vue"
+    ],
+    "author": "lRainZz",
+    "license": "MIT",
+    "dependencies": {
+        "prettier": "^3.2.5"
+    }
+}
