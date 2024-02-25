@@ -94,6 +94,9 @@ const printHelp = () => {
             -t, --tab-size [NUMBER_OF_SPACES]
                 sets the number of spaces used for the indentation of the component,
                 defaults to 4
+
+            -k, --keep-color
+                disables fill/stroke property value replacements
     `)
 }
 
