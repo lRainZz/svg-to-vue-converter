@@ -2,10 +2,12 @@ import fs from 'fs'
 import prettier from 'prettier'
 
 class SvgConverter {
-    constructor(inputDirectory, ouputDirectory, backupDirectory) {
+    constructor(inputDirectory, ouputDirectory, backupDirectory, { printAsIs = false, tabSize = 4 }) {
         this.inputDirectory  = inputDirectory
         this.ouputDirectory  = ouputDirectory
         this.backupDirectory = backupDirectory
+        this.printAsIs       = printAsIs
+        this.tabSize         = tabSize
     }
 
     convert = async (...svgNames) => {
@@ -53,8 +55,20 @@ class SvgConverter {
     }
 
     _convertToVueComponent = async (svgString) => {
-        const componentString = '<template> ' + svgString + ' </template>'
-        return prettier.format(componentString, { parser: 'html', tabWidth: 4, useTabs: false })
+        // trim whitespaces and linebreaks from the beginning and the end of the string
+        svgString = svgString.trim().replace(/^\n*/, '').replace(/\n*$/, '')
+
+        let componentString = '<template>\n'
+        componentString += ' '.repeat(this.tabSize) + svgString
+        componentString += '\n</template>'
+
+        if (this.printAsIs) return componentString
+
+        // sanitize double linebreaks with only whitespace on between
+        // -> mostly fixes empty lines before the closing tag if the original svg
+        //    had an extra linebreak before the eof
+        componentString = componentString.replace(/\n\s*\n/g)
+        return prettier.format(componentString, { parser: 'html', tabWidth: this.tabSize, useTabs: false })
     }
 
     _backupSvg = (svgName) => {

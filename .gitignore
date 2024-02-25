@@ -125,3 +125,6 @@ dist
 
 # mac os ds store
 .DS_Store
+
+# svg folder for testing
+svg

@@ -26,9 +26,9 @@ SYNOPSIS
 
 DESCRIPTION:
     Converts SVGs' to vue components and replaces 'fill' and 'stroke' porperties
-    with 'currentColor' for easier use in Vue projects. Does not work well with
+    with 'currentColor' for an easier use in vue projects. Does not work well with
     multicolor SVGs'! By Default it takes the SVGs' in the current folder and replaces
-    them with generated Vue component counterparts -> SVGs' will be backed up.
+    them with its' generated Vue counterparts -> SVGs' will be backed up.
 
     -h, --help
         display this help
@@ -41,4 +41,13 @@ DESCRIPTION:
         directory to store the generated Vue components,
         defaults to the current directory '.',
         an 'svg' backup folder will be created inside the output folder
+
+    -p, --print-as-is
+        omits the formatting with prettier of the created component,
+        still wraps the svg in a <template> tag and does some simple whitespace
+        sanitization
+
+    -t, --tab-size [NUMBER_OF_SPACES]
+        sets the number of spaces used for the indentation of the component,
+        defaults to 4
 ```

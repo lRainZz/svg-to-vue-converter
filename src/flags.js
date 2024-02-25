@@ -2,7 +2,7 @@ class Flag {
     /**
      * 
      * @param {string[]} id 
-     * @param {string} defaultValue
+     * @param {any} defaultValue
      */ 
     constructor(id, hasValue, defaultValue = null) {
         this.id           = id
@@ -12,25 +12,29 @@ class Flag {
 }
 
 const FLAGS = {
-    HELP: new Flag(['-h', '--help'], false),
-    INPUT_DIRECTORY: new Flag(['-i', '--input-directory'], true, '.'),
-    OUTPUT_DIRECTORY: new Flag(['-o', '--output-directory'], true, '.')
+    HELP:             new Flag(['-h', '--help'],             false),
+    INPUT_DIRECTORY:  new Flag(['-i', '--input-directory'],  true, '.'),
+    OUTPUT_DIRECTORY: new Flag(['-o', '--output-directory'], true, '.'),
+    PRINT_AS_IS:      new Flag(['-p', '--print-as-is'],      false),
+    TAB_SIZE:         new Flag(['-t', '--tab-size'],         true, 4)
 }
 
 /**
  * 
  * @param {Flag} flag to get
  */
-const isFlagPresent = (flag) => {
-    return flag.id.find(id => process.argv.indexOf(id) !== -1)
+const _isFlagPresent = (flag) => {
+    return !!flag.id.find(id => process.argv.indexOf(id) !== -1)
 }
 
 /**
  * 
- * @param {Flag} flag to get
+ * @param {Flag} flag to get value of
+ * 
+ * @returns {any} value of the flag
  */
 const getFlagValue = (flag) => {
-    if (!flag.hasValue) return null
+    if (!flag.hasValue) return _isFlagPresent(flag)
     
     let indexOfFlag = null
 
@@ -81,12 +85,19 @@ const printHelp = () => {
                 defaults to the current directory '.',
                 an 'svg' backup folder will be created inside the output folder
 
+            -p, --print-as-is
+                omits the formatting with prettier of the created component,
+                still wraps the svg in a <template> tag and does some simple whitespace
+                sanitization
+
+            -t, --tab-size [NUMBER_OF_SPACES]
+                sets the number of spaces used for the indentation of the component,
+                defaults to 4
     `)
 }
 
 export {
     FLAGS,
-    isFlagPresent,
     getFlagValue,
     printHelp
 }
