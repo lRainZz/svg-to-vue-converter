@@ -2,18 +2,19 @@ import fs from 'fs'
 import prettier from 'prettier'
 
 class SvgConverter {
-    constructor(inputDirectory, ouputDirectory, backupDirectory, { printAsIs = false, tabSize = 4 }) {
+    constructor(inputDirectory, ouputDirectory, backupDirectory, { printAsIs = false, tabSize = 4, keepColor = false }) {
         this.inputDirectory  = inputDirectory
         this.ouputDirectory  = ouputDirectory
         this.backupDirectory = backupDirectory
         this.printAsIs       = printAsIs
         this.tabSize         = tabSize
+        this.keepColor       = keepColor
     }
 
     convert = async (...svgNames) => {
         for (const svgName of svgNames) {
             const svgContent        = this._readSvg(svgName)
-            const svgContentUpdated = this._replaceFillAndStroke(svgContent)
+            const svgContentUpdated = this.keepColor ? svgContent : this._replaceFillAndStroke(svgContent)
             const vueComponent      = await this._convertToVueComponent(svgContentUpdated)
 
             const componentName = this._convertSvgNameToVueComponentName(svgName)

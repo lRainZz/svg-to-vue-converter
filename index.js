@@ -15,6 +15,7 @@ if (getFlagValue(FLAGS.HELP)) {
 const INPUT_DIRECTORY  = getFlagValue(FLAGS.INPUT_DIRECTORY).replace(/\/$/, '')
 const OUTPUT_DIRECTORY = getFlagValue(FLAGS.OUTPUT_DIRECTORY).replace(/\/$/, '')
 const PRINT_AS_IS      = getFlagValue(FLAGS.PRINT_AS_IS)
+const KEEP_COLOR       = getFlagValue(FLAGS.KEEP_COLOR)
 // will crash if the value is not an int, but that's fine
 const TAB_SIZE         = parseInt(getFlagValue(FLAGS.TAB_SIZE), 10)
 
@@ -33,7 +34,8 @@ if (!svgFiles || svgFiles.length === 0) {
 
 const converterOptions = {
     printAsIs: PRINT_AS_IS,
-    tabSize:   TAB_SIZE
+    tabSize:   TAB_SIZE,
+    keepColor: KEEP_COLOR
 }
 const svgConverter = new SvgConverter(INPUT_DIRECTORY, OUTPUT_DIRECTORY, BACKUP_DIRECTORY, converterOptions)
 // async!

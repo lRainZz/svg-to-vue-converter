@@ -16,7 +16,8 @@ const FLAGS = {
     INPUT_DIRECTORY:  new Flag(['-i', '--input-directory'],  true, '.'),
     OUTPUT_DIRECTORY: new Flag(['-o', '--output-directory'], true, '.'),
     PRINT_AS_IS:      new Flag(['-p', '--print-as-is'],      false),
-    TAB_SIZE:         new Flag(['-t', '--tab-size'],         true, 4)
+    TAB_SIZE:         new Flag(['-t', '--tab-size'],         true, 4),
+    KEEP_COLOR:       new Flag(['-k', '--keep-color'],       false)
 }
 
 /**
